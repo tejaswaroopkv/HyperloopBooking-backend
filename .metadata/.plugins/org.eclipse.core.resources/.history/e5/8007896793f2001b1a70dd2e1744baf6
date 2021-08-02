@@ -1,0 +1,5 @@
+package com.fightbook.adminManager.io;
+
+public class JWTUserDetailsService {
+
+}

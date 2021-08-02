@@ -1,0 +1,5 @@
+package com.flightbook.adminManager.dto;
+
+public class DestinationDTO {
+
+}

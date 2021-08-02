@@ -1,0 +1,125 @@
+package com.fightbook.adminManager.dto;
+
+public class ScheduleFlightDTO {
+
+	private Integer id;
+	private Integer airlineId;
+	//private Integer airlineName;
+	private Integer srcid;
+	private Integer destid;
+//	private String sourcePlace;
+//	private String destinationPlace;
+	private String depatureDate;
+	private String returnDate;
+	//private String createdDate;
+	private String price;
+	private Integer flightCodeId;	
+	private Boolean isAvailable;
+	private Integer totalSeats;
+	
+	
+	
+	public Integer getId() {
+		return id;
+	}
+
+	public void setId(Integer id) {
+		this.id = id;
+	}
+
+	public Integer getAirlineId() {
+		return airlineId;
+	}
+
+	public void setAirlineId(Integer airlineId) {
+		this.airlineId = airlineId;
+	}
+
+	public Integer getSrcid() {
+		return srcid;
+	}
+
+	public void setSrcid(Integer srcid) {
+		this.srcid = srcid;
+	}
+
+	public Integer getDestid() {
+		return destid;
+	}
+
+	public void setDestid(Integer destid) {
+		this.destid = destid;
+	}
+
+	public String getDepatureDate() {
+		return depatureDate;
+	}
+
+	public void setDepatureDate(String depatureDate) {
+		this.depatureDate = depatureDate;
+	}
+
+	public String getReturnDate() {
+		return returnDate;
+	}
+
+	public void setReturnDate(String returnDate) {
+		this.returnDate = returnDate;
+	}
+
+//	public String getCreatedDate() {
+//		return createdDate;
+//	}
+//
+//	public void setCreatedDate(String createdDate) {
+//		this.createdDate = createdDate;
+//	}
+
+	public String getPrice() {
+		return price;
+	}
+
+	public void setPrice(String price) {
+		this.price = price;
+	}
+
+	public Integer getFlightCodeId() {
+		return flightCodeId;
+	}
+
+	public void setFlightCodeId(Integer flightCodeId) {
+		this.flightCodeId = flightCodeId;
+	}
+
+	public Boolean getIsAvailable() {
+		return isAvailable;
+	}
+
+	public void setIsAvailable(Boolean isAvailable) {
+		this.isAvailable = isAvailable;
+	}
+	
+
+	public Integer getTotalSeats() {
+		return totalSeats;
+	}
+
+	public void setTotalSeats(Integer totalSeats) {
+		this.totalSeats = totalSeats;
+	}
+
+	@Override
+	public String toString() {
+		return "ScheduleFlightDTO [id=" + id + ", airlineId=" + airlineId + ", srcid=" + srcid + ", destid=" + destid
+				+ ", depatureDate=" + depatureDate + ", returnDate=" + returnDate + ", price=" + price
+				+ ", flightCodeId=" + flightCodeId + ", isAvailable=" + isAvailable + ", totalSeats=" + totalSeats
+				+ "]";
+	}
+
+
+
+	
+	
+	
+	
+}

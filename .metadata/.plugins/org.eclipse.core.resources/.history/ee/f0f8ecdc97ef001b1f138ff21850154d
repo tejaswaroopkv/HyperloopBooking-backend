@@ -1,0 +1,13 @@
+package com.fightbook.adminManager.repository;
+
+import java.io.Serializable;
+
+import com.fightbook.adminManager.Entity.Airline;
+import com.fightbook.adminManager.Entity.FlightCode;
+import com.fightbook.adminManager.dto.AirlineDTO;
+
+public interface AdminDAO {
+	public Airline getAirlineByName(String airlineName);
+	public <T extends Serializable> T save(T entity);
+
+}

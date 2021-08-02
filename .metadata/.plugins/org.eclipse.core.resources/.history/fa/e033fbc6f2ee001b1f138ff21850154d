@@ -1,0 +1,5 @@
+package com.fightbook.adminManager.Entity;
+
+public class Airline {
+
+}

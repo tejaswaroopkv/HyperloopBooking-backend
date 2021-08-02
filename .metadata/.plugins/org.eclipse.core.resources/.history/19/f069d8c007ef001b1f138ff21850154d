@@ -1,0 +1,5 @@
+package com.fightbook.adminManager.controller;
+
+public class BaseController {
+
+}

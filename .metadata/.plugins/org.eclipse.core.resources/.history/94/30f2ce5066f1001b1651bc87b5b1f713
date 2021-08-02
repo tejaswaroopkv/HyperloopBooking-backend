@@ -1,0 +1,20 @@
+package com.fightbook.adminManager.dto;
+
+public class FlightCodeInfoDTO {
+	private String flightCode;
+
+	public String getFlightCode() {
+		return flightCode;
+	}
+
+	public void setFlightCode(String flightCode) {
+		this.flightCode = flightCode;
+	}
+
+	@Override
+	public String toString() {
+		return "FlightCodeInfoDTO [flightCode=" + flightCode + "]";
+	}
+	
+
+}

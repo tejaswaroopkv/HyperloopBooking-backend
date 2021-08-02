@@ -1,0 +1,8 @@
+package com.fightbook.adminManager.io;
+
+import com.fightbook.adminManager.dto.AirlineDTO;
+
+public interface AdminService {
+	public AirlineDTO saveAirline(AirlineDTO airlineDTO );
+
+}

@@ -1,0 +1,23 @@
+package com.fightbook.adminManager.io;
+
+import java.util.List;
+
+import com.flightbook.adminManager.Entity.Airport;
+import com.flightbook.adminManager.Entity.Coupon;
+import com.flightbook.adminManager.Exception.FlightBookingException;
+import com.flightbook.adminManager.dto.AirlineDTO;
+import com.flightbook.adminManager.dto.AirlineInfoDTO;
+import com.flightbook.adminManager.dto.CouponDTO;
+import com.flightbook.adminManager.dto.ScheduleFlightDTO;
+import com.flightbook.adminManager.dto.ScheduleFlightData;
+
+public interface AdminService {
+	public AirlineDTO saveorUpdateAirline(AirlineDTO airlineDTO ) throws FlightBookingException;
+	public CouponDTO saveorUpdateCoupon(CouponDTO couponDTO ) throws FlightBookingException;
+	public ScheduleFlightDTO saveorUpdateScheduleFlight(ScheduleFlightDTO scheduleFlightDTO) throws FlightBookingException;
+	public List<AirlineInfoDTO> getAirlineInfo() throws FlightBookingException;
+	public List<Airport> getAirportData() throws FlightBookingException;
+	public List<Coupon> getCouponData() throws FlightBookingException;
+	public List<ScheduleFlightData> getScheduleFlightData() throws FlightBookingException;
+
+}

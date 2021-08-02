@@ -1,0 +1,5 @@
+package com.fightbook.adminManager.config;
+
+public class SwaggerConfiguration {
+
+}

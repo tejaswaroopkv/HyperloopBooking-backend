@@ -1,0 +1,142 @@
+package com.fightbook.adminManager.Entity;
+
+import java.io.Serializable;
+import java.util.Date;
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
+@Entity
+@Table(name="schedule_flight")
+public class ScheduleFlight implements Serializable {
+	private static final long serialVersionUID = 1L;
+	@Id
+	@Column(name="schedule_id")
+	@GeneratedValue(strategy =GenerationType.IDENTITY)
+	private Integer scheduleId;
+	 
+	@Column(name="airline_id")
+	private Integer airlineId;
+	
+	@Column(name="src_id")
+	private Integer srcId;
+	
+	@Column(name="dest_id")
+	private Integer desId;
+	
+	@Column(name="flight_code_id")
+	private Integer flightCodeId;
+	
+	@Column(name="price")
+	private String price;
+	
+	@Column(name="departure_date")
+	private Date departureDate;
+
+	@Column(name="return_date")
+	private Date returnDate;
+	
+	@Column(name="created_date")
+	private Date createdDate;
+	
+	@Column(name="is_available")
+	private Boolean isAvailable;
+
+	public Integer getScheduleId() {
+		return scheduleId;
+	}
+
+	public void setScheduleId(Integer scheduleId) {
+		this.scheduleId = scheduleId;
+	}
+
+	public Integer getAirlineId() {
+		return airlineId;
+	}
+
+	public void setAirlineId(Integer airlineId) {
+		this.airlineId = airlineId;
+	}
+
+	public Integer getSrcId() {
+		return srcId;
+	}
+
+	public void setSrcId(Integer srcId) {
+		this.srcId = srcId;
+	}
+
+	public Integer getDesId() {
+		return desId;
+	}
+
+	public void setDesId(Integer desId) {
+		this.desId = desId;
+	}
+
+	public Integer getFlightCodeId() {
+		return flightCodeId;
+	}
+
+	public void setFlightCodeId(Integer flightCodeId) {
+		this.flightCodeId = flightCodeId;
+	}
+
+	public String getPrice() {
+		return price;
+	}
+
+	public void setPrice(String price) {
+		this.price = price;
+	}
+
+	public Date getDepartureDate() {
+		return departureDate;
+	}
+
+	public void setDepartureDate(Date departureDate) {
+		this.departureDate = departureDate;
+	}
+
+	public Date getReturnDate() {
+		return returnDate;
+	}
+
+	public void setReturnDate(Date returnDate) {
+		this.returnDate = returnDate;
+	}
+
+	public Date getCreatedDate() {
+		return createdDate;
+	}
+
+	public void setCreatedDate(Date createdDate) {
+		this.createdDate = createdDate;
+	}
+
+	public Boolean getIsAvailable() {
+		return isAvailable;
+	}
+
+	public void setIsAvailable(Boolean isAvailable) {
+		this.isAvailable = isAvailable;
+	}
+
+	@Override
+	public String toString() {
+		return "ScheduleFlight [scheduleId=" + scheduleId + ", airlineId=" + airlineId + ", srcId=" + srcId + ", desId="
+				+ desId + ", flightCodeId=" + flightCodeId + ", price=" + price + ", departureDate=" + departureDate
+				+ ", returnDate=" + returnDate + ", createdDate=" + createdDate + ", isAvailable=" + isAvailable + "]";
+	}
+	
+	
+	
+	
+	
+	
+
+}
