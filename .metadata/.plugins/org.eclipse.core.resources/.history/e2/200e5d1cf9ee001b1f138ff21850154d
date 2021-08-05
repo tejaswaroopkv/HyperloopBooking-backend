@@ -1,5 +1,0 @@
-package com.fightbook.adminManager.repository;
-
-public class BaseRepository {
-
-}

@@ -17,7 +17,7 @@ public class SwaggerConfiguration {
 	public Docket mySwaggerConfiguration() {
 		return new Docket(DocumentationType.SWAGGER_2)
 				.select()
-				.paths(PathSelectors.ant("/admin/**"))
+				.paths(PathSelectors.ant("/flight/admin/**"))
 				.apis(RequestHandlerSelectors.basePackage("com.fightbook.adminManager"))
 				.build()
 				.apiInfo(apiInfo())
@@ -26,8 +26,8 @@ public class SwaggerConfiguration {
 
 	private ApiInfo apiInfo() {
 		return new ApiInfoBuilder()
-				.title("This is my first springboot rest")
-				.description("Some description is here")
+				.title("Admin Manager API")
+				.description("MicroService Handling Admin Operations")
 				.version("5.4")
 				.contact(new Contact("Tejaswaroop", "https://www.localhost:4200/user/DashBoard/bookfights", "teja@gmail.com"))
 				.build()

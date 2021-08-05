@@ -1,7 +1,0 @@
-package com.fightbook.adminManager.config;
-
-import java.io.Serializable;
-
-public class JwtTokenUtil implements Serializable {
-
-}

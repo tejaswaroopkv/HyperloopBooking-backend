@@ -1,5 +1,0 @@
-package com.fightbook.adminManager.Exception;
-
-public class FlightBookingException {
-
-}

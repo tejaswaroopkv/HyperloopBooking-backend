@@ -1,6 +1,0 @@
-package com.fightbook.adminManager.dto;
-
-public class FlightCodeInfoDTO {
-	private String flightCode;
-
-}

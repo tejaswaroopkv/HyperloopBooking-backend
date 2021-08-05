@@ -1,7 +1,0 @@
-package com.fightbook.adminManager.Entity;
-
-import java.io.Serializable;
-
-public class ScheduleFlight implements Serializable {
-
-}
