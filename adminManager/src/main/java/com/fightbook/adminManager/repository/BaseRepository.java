@@ -74,4 +74,17 @@ public class BaseRepository {
 		entityManager.persist(flightcode);
 		return flightcode;
 	}
+	protected <T extends Serializable> T saveKafkaData(T entity) {
+		try {
+		
+				entityManager.merge(entity);
+
+			return entity;
+		} catch (Exception ex) {
+			//log.error("Error in updating:" + entity + "into Database at updateEntity() method ", ex);
+			return null;
+		}
+	}
+	
+	
 }

@@ -22,8 +22,8 @@ import com.fightbook.adminManager.io.AdminService;
 @RestController
 @CrossOrigin(origins = "*", allowedHeaders = "*")
 //@CrossOrigin
-//@RequestMapping("flight/admin")
-@RequestMapping("admin/flight")
+@RequestMapping("flight")
+//@RequestMapping("admin/flight")
 public class AdminModuleController extends BaseController {
 	@Autowired
 	private AdminService adminService;
@@ -67,6 +67,22 @@ public class AdminModuleController extends BaseController {
 					HttpStatus.OK);
 		}
 	}
+	
+	//Get Passenger Bookings
+	@GetMapping("/getPassengerBookings")
+	@CrossOrigin(origins = "*", allowedHeaders = "*")
+	public ResponseEntity<JsonResponse> getPassengerBookings() {
+		try {
+			return new ResponseEntity(
+					new JsonResponse(AdminConstants.SUCCESS_MSG,
+							adminService.getPassengerBookings(), "Flight added successfully"),
+					HttpStatus.OK);
+		} catch (FlightBookingException ex) {
+			return new ResponseEntity(new JsonResponse(AdminConstants.ERROR_MSG, null, ex.getMessage()),
+					HttpStatus.OK);
+		}
+	}
+	
 
 	// Get Airline and Fight Codes
 /*	@GetMapping("/getAirlineInfo")

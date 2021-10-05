@@ -25,6 +25,7 @@ public interface AdminDAO {
 	public <T extends Serializable> T merge(T entity);
 	public List<Coupon> getCouponData() throws FlightBookingException;
 	public List<Object[]> getScheduledFlightData() throws FlightBookingException;
+	public <T extends Serializable> T saveData(T entity);
 	//public ScheduleFlight
 
 }

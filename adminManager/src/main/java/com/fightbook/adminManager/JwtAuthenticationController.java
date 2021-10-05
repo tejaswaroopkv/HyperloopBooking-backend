@@ -21,8 +21,8 @@ import com.fightbook.adminManager.io.JwtUserDetailsService;
 
 @RestController
 @CrossOrigin(origins = "*", allowedHeaders = "*")
-//@CrossOrigin
-//@RequestMapping("admin/flight")
+//@CrossOrigin(origins="http://localhost:8989/admin")
+@RequestMapping("flight")
 public class JwtAuthenticationController {
 	@Autowired
 	private AuthenticationManager authenticationManager;

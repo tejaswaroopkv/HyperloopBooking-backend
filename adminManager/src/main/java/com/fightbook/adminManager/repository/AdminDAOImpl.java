@@ -172,6 +172,16 @@ public class AdminDAOImpl extends BaseRepository implements AdminDAO {
 		}
 	}
 
+	@Override
+	public <T extends Serializable> T saveData(T entity) {
+		try {
+			return this.saveKafkaData(entity);
+		}catch(Exception e) {
+			//log.error("Error in SAVING Data "+ entity.toString());
+			return null;
+		}
+	}
+
 
 	
 

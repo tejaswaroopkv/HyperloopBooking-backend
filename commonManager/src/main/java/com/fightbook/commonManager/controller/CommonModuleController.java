@@ -1,6 +1,7 @@
 package com.fightbook.commonManager.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
@@ -22,6 +23,7 @@ import com.fightbook.commonManager.io.CommonService;
 @RestController
 @CrossOrigin(origins = "*", allowedHeaders = "*")
 @RequestMapping("flight")
+//@RequestMapping("/common/flight")
 public class CommonModuleController extends BaseController {
 	@Autowired
 	private CommonService adminService;
@@ -31,36 +33,39 @@ public class CommonModuleController extends BaseController {
 
 	// Get Airline and Fight Codes
 	@GetMapping("/getAirlineInfo")
+	//@Cacheable(value = "airlineInfo")
 	@CrossOrigin(origins = "*", allowedHeaders = "*")
 	public ResponseEntity<JsonResponse> getAirlineInfo() {
 		try {
 			return new ResponseEntity(new JsonResponse(AdminConstants.SUCCESS_MSG, adminService.getAirlineInfo(),
 					"Flight info successfully returned"), HttpStatus.OK);
-		} catch (FlightBookingException ex) {
+		} catch (Exception ex) {
 			return new ResponseEntity(new JsonResponse(AdminConstants.ERROR_MSG, null, ex.getMessage()), HttpStatus.OK);
 		}
 	}
 
 	// Get Airport Data
 	@GetMapping("/getAirportData")
+	//@Cacheable(value = "AirPort-list")
 	@CrossOrigin(origins = "*", allowedHeaders = "*")
 	public ResponseEntity<JsonResponse> getAirportData() {
 		try {
 			return new ResponseEntity(new JsonResponse(AdminConstants.SUCCESS_MSG, adminService.getAirportData(),
 					"Airport data successfully returned"), HttpStatus.OK);
-		} catch (FlightBookingException ex) {
+		} catch (Exception ex) {
 			return new ResponseEntity(new JsonResponse(AdminConstants.ERROR_MSG, null, ex.getMessage()), HttpStatus.OK);
 		}
 	}
 
 	// Get Airport Data
 	@GetMapping("/getCouponData")
+	@Cacheable(value = "coupondata")
 	@CrossOrigin(origins = "*", allowedHeaders = "*")
 	public ResponseEntity<JsonResponse> getCouponData() {
 		try {
 			return new ResponseEntity(new JsonResponse(AdminConstants.SUCCESS_MSG, adminService.getCouponData(),
 					"Coupon data successfully returned"), HttpStatus.OK);
-		} catch (FlightBookingException ex) {
+		} catch (Exception ex) {
 			return new ResponseEntity(new JsonResponse(AdminConstants.ERROR_MSG, null, ex.getMessage()), HttpStatus.OK);
 		}
 	}

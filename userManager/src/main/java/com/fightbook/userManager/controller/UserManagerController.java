@@ -3,6 +3,7 @@ package com.fightbook.userManager.controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
@@ -25,6 +26,7 @@ import com.fightbook.userManager.io.UserService;
 @RestController
 @CrossOrigin(origins = "*", allowedHeaders = "*")
 @RequestMapping("flight")
+//@RequestMapping("/user/flight")
 public class UserManagerController {
 	@Autowired
 	private UserService userService;
@@ -55,6 +57,7 @@ public class UserManagerController {
 	
 	//Get user ticket
 	@GetMapping("/getTicket")
+	//@Cacheable(value = "ticketData")
 	@CrossOrigin(origins = "*", allowedHeaders = "*")
 	public ResponseEntity<JsonResponse> getTicket(@RequestParam("pnr") String pnrNumber, @RequestParam("type") Integer type) {
 		try {

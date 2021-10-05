@@ -17,7 +17,7 @@ public class SwaggerConfiguration {
 	public Docket mySwaggerConfiguration() {
 		return new Docket(DocumentationType.SWAGGER_2)
 				.select()
-				.paths(PathSelectors.ant("/flight/user/**"))
+				.paths(PathSelectors.ant("/flight/**"))
 				.apis(RequestHandlerSelectors.basePackage("com.fightbook.userManager"))
 				.build()
 				.apiInfo(apiInfo())

@@ -10,11 +10,13 @@ import java.util.List;
 
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.kafka.annotation.KafkaListener;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.fightbook.adminManager.Entity.Airline;
 import com.fightbook.adminManager.Entity.Airport;
+import com.fightbook.adminManager.Entity.BookingData;
 import com.fightbook.adminManager.Entity.Coupon;
 import com.fightbook.adminManager.Entity.FlightCode;
 import com.fightbook.adminManager.Entity.ScheduleFlight;
@@ -26,12 +28,18 @@ import com.fightbook.adminManager.dto.FlightCodeInfoDTO;
 import com.fightbook.adminManager.dto.ScheduleFlightDTO;
 import com.fightbook.adminManager.dto.ScheduleFlightData;
 import com.fightbook.adminManager.repository.AdminDAO;
+import com.fightbook.adminManager.repository.BookingDataRepository;
 //import com.mysql.cj.util.DnsSrv.SrvRecord;
 
 @Service
 public class AirlineServiceImpl implements AdminService {
 	@Autowired
 	private AdminDAO adminDAO;
+	
+	@Autowired
+	private BookingDataRepository bookingRepo;
+	
+	private static final String TOPIC = "passengerData";
 
 	@Override
 	@Transactional
@@ -208,6 +216,16 @@ public class AirlineServiceImpl implements AdminService {
 		
 		
 		return scheduleFlightList;
+	}
+	@KafkaListener(topics = TOPIC, groupId = "group_id", containerFactory = "userKafkaListenerFactory")
+	public void getDataFromKafkaAndPutItIntoDB(BookingData ticket) {
+		bookingRepo.save(ticket);
+		System.out.println("Kafka data saved to DB..!");
+	}
+
+	@Override
+	public List<BookingData> getPassengerBookings() throws FlightBookingException {
+		return bookingRepo.findAll();
 	}
 
 }

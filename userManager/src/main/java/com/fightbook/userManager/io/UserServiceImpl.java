@@ -1,5 +1,6 @@
 package com.fightbook.userManager.io;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.transaction.Transactional;
@@ -10,6 +11,7 @@ import org.springframework.stereotype.Service;
 import com.fightbook.userManager.Entity.BookingData;
 import com.fightbook.userManager.Exception.UserBookingException;
 import com.fightbook.userManager.dto.PassengerInfo;
+import com.fightbook.userManager.kafka.KafkaController;
 import com.fightbook.userManager.repository.UserDAO;
 
 @Service
@@ -17,11 +19,16 @@ public class UserServiceImpl implements UserService {
 
 	@Autowired
 	private UserDAO userDAO;
+	@Autowired
+	private KafkaController kafka;
+	
+	private Boolean isSent=false;
 	
 	@Override
 	@Transactional
 	public List<PassengerInfo> saveorUpdateBooking(List<PassengerInfo> bookingDTO) throws UserBookingException {
 		System.out.println(bookingDTO);
+		List<BookingData>bookingList = new ArrayList<>();
 		BookingData bookingData = null;
 		int primaryId =0;
 		for(PassengerInfo passenger : bookingDTO){
@@ -49,10 +56,14 @@ public class UserServiceImpl implements UserService {
 					bookingData.setParentPassengerId(0);
 					bookingData = userDAO.save(bookingData);
 					primaryId = bookingData.getPassengerId();
+					passenger.setPassengerId(primaryId);
+					bookingList.add(bookingData);
 				}
 				else{
 					bookingData.setParentPassengerId(primaryId);
 					bookingData = userDAO.save(bookingData);
+					passenger.setPassengerId(bookingData.getPassengerId());
+					bookingList.add(bookingData);
 				}
 				/*if(!passenger.getIsPrimary()){
 					bookingData.setParentPassengerId(bookingData.getPassengerId());
@@ -65,6 +76,10 @@ public class UserServiceImpl implements UserService {
 				bookingData.setIsCancelled(true);
 				bookingData = userDAO.merge(bookingData);
 			}*/
+		}
+		this.isSent = kafka.writeData(bookingList);
+		if(this.isSent){
+			System.out.println("Data sent successfully");
 		}
 		
 		
