@@ -32,7 +32,7 @@ import com.fightbook.adminManager.repository.BookingDataRepository;
 //import com.mysql.cj.util.DnsSrv.SrvRecord;
 
 @Service
-public class AirlineServiceImpl implements AdminService {
+public class AdminServiceImpl implements AdminService {
 	@Autowired
 	private AdminDAO adminDAO;
 	

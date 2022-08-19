@@ -10,49 +10,68 @@ import org.mockito.Mockito;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
-import org.springframework.test.context.junit4.SpringRunner;
+import org.springframework.context.annotation.Configuration;
 
+import com.fightbook.commonManager.CommonManagerApplication;
 import com.fightbook.commonManager.Entity.Airport;
+import com.fightbook.commonManager.Entity.Coupon;
 import com.fightbook.commonManager.Exception.FlightBookingException;
+import com.fightbook.commonManager.dto.AirlineDTO;
+import com.fightbook.commonManager.dto.AirlineInfoDTO;
 import com.fightbook.commonManager.io.CommonService;
 import com.fightbook.commonManager.repository.CommonDAO;
-//import org.junit.runner.RunWith;
 
-//@RunWith(SpringRunner.class)
-@SpringBootTest
-class CommonManagerApplicationTests {
+@SpringBootTest(classes = CommonManagerApplication.class)
+public class CommonManagerApplicationTests {
 	@Autowired
-	private CommonService  service;
-	
+	private CommonService service;
+
 	@MockBean
 	private CommonDAO repository;
-	
+
+	List<Airport> airportList = new ArrayList<>();
+	List<AirlineInfoDTO> airlineinfoList = new ArrayList<>();
+	List<Coupon> couponList = new ArrayList<>();
+
 	@Test
 	public void testAirportData() {
-		
 		try {
-			Mockito
-				.when(repository.getAirportData())
-				.thenReturn(Arrays.asList(new Airport()));
+			Mockito.when(repository.getAirportData()).thenReturn(Arrays.asList(new Airport()));
+			List<Airport> airports = service.getAirportData();
+			Assertions.assertTrue(airports.size() > 0);
+			Assertions.assertNotEquals(airportList, airports);
+			System.out.println(airports);
 		} catch (FlightBookingException e) {
-			e.printStackTrace();
+			e.getMessage();
 		}
-		
-		
-		List<Airport> airportData;
+	}
+
+	@Test
+	public void testAirportDataException() {
 		try {
-			airportData = service.getAirportData();
-			System.out.println(airportData);
-			System.out.println(airportData.size());
-			List<Airport> airports = new ArrayList<>();
-			Assertions.assertEquals(airports, airportData);
-			Assertions.assertTrue(airports.size()>1);
+			Mockito.when(repository.getAirportData()).thenThrow(new FlightBookingException("Something went wrong"));
+			List<Airport> airports = service.getAirportData();
 		} catch (FlightBookingException e) {
-			e.printStackTrace();
+			e.getMessage();
+			Assertions.assertEquals("Something went wrong",e.getMessage());
+
 		}
-		
-		
-		
+	}
+
+
+
+	@Test
+	public void testCouponData() {
+		try {
+			Mockito.when(repository.getCouponData()).thenReturn(Arrays.asList(new Coupon()));
+			List<Coupon> coupons = service.getCouponData();
+			Assertions.assertTrue(coupons.size() > 0);
+			Assertions.assertNotEquals(couponList, coupons);
+			System.out.println(coupons);
+		} catch (FlightBookingException e) {
+			e.getMessage();
+
+		}
 	}
 
 }
